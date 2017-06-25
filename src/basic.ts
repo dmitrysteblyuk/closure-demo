@@ -4,10 +4,6 @@ import {Component, Injectable} from '@angular/core';
   selector: 'basic',
   templateUrl: './basic.ng.html',
 })
-@Injectable()
 export class Basic {
-  ctxProp: string;
-  constructor() {
-    this.ctxProp = `Hello World`;
-  }
+    data = { 'someProp': 'defined in quotes', anotherProp: 'normal syntax' };
 }

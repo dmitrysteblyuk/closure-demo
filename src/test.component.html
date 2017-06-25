@@ -1,0 +1,24 @@
+
+<p *ngIf="data">input data = {{ data | json }}</p>
+
+<div *ngIf="templateContextMode" [ngSwitch]="templateContextMode">
+    <div *ngSwitchCase="'standard'">
+        <p><b>Normally passed context will fail:</b></p>
+        <ng-container *ngTemplateOutlet="template; context: { someVar: 'VALUE' }"></ng-container>
+    </div>
+
+    <div *ngSwitchCase="'inQuotes'">
+        <p><b>If property in quotes, it also fails:</b></p>
+        <ng-container *ngTemplateOutlet="template; context: { 'someVar': 'VALUE' }"></ng-container>
+    </div>
+
+    <div *ngSwitchCase="'definedInComponent'">
+        <p><b>Getting context from component is the only working option:</b></p>
+        <ng-container *ngTemplateOutlet="template; context: context"></ng-container>
+    </div>
+
+    <div *ngSwitchCase="'inComponentInQuotes'">
+        <p><b>But properties must not be in quotes</b></p>
+        <ng-container *ngTemplateOutlet="template; context: contextInQuotes"></ng-container>
+    </div>
+</div>

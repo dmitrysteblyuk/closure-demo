@@ -1,22 +1,2 @@
-
-<h3>Testing inputs:</h3>
-
-Input data defined in template:
-<app-test [data]="{ someProp: 'defined in quotes', anotherProp: 'normal syntax' }"></app-test>
-
-Same data defined in component:
-<app-test [data]="data"></app-test>
-
-<h3>Now testing template:</h3>
-
-<app-test templateContextMode="standard" [template]="someVarTemplate"></app-test>
-
-<app-test templateContextMode="inQuotes" [template]="someVarTemplate"></app-test>
-
-<app-test templateContextMode="definedInComponent" [template]="someVarTemplate"></app-test>
-
-<app-test templateContextMode="inComponentInQuotes" [template]="someVarTemplate"></app-test>
-
-<ng-template let-someVar="someVar" #someVarTemplate>
-    <div><i>Template context variable</i> = <b>{{ someVar }}</b></div>
-</ng-template>
+<div>{{ctxProp}}</div>
+<input type="text" [value]="ctxProp" (input)="ctxProp = $event.target.value"/>

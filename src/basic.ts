@@ -1,9 +1,17 @@
-import {Component, Injectable} from '@angular/core';
+import {Component, Injectable, QueryList} from '@angular/core';
+import { FocusKeyManager } from '@angular/cdk/a11y';
+
 
 @Component({
   selector: 'basic',
   templateUrl: './basic.ng.html',
 })
+@Injectable()
 export class Basic {
-    data = { 'someProp': 'defined in quotes', anotherProp: 'normal syntax' };
+  ctxProp: string;
+  constructor() {
+    this.ctxProp = `Hello World`;
+
+    console.log(new FocusKeyManager(new QueryList()).withWrap().withTypeAhead());
+  }
 }

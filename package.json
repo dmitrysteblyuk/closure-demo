@@ -3,29 +3,25 @@
   "version": "1.0.0",
   "description": "Demonstrate Angular app bundled and optimized by Google Closure Compiler",
   "devDependencies": {
-    "@angular/common": "^4.2.6",
-    "@angular/compiler": "^4.2.6",
-    "@angular/compiler-cli": "^4.2.6",
-    "@angular/core": "^4.2.6",
-    "@angular/platform-browser": "^4.2.6",
-    "@angular/tsc-wrapped": "^4.2.6",
-    "@types/jasmine": "^2.5.53",
-    "clang-format": "^1.0.53",
+    "@angular/common": "5.0.1",
+    "@angular/compiler": "5.0.1",
+    "@angular/compiler-cli": "5.0.1",
+    "@angular/core": "5.0.1",
+    "@angular/platform-browser": "5.0.1",
+    "@types/jasmine": "^2.5.47",
+    "clang-format": "^1.0.55",
     "concurrently": "3.4.0",
+    "google-closure-compiler": "20171023.0.1",
     "lite-server": "2.3.0",
     "protractor": "^5.1.2",
-    "rxjs": "5.4.0",
-    "source-map-explorer": "^1.4.0",
-    "tsickle": "^0.21.6",
-    "typescript": "~2.1",
-    "zone.js": "^0.8.13"
-  },
-  "dependencies": {
-    "google-closure-compiler": "^20170626.0.0",
-    "moment": "2.18.1"
+    "rxjs": "^5.4.3",
+    "source-map-explorer": "^1.5.0",
+    "typescript": "~2.4.2",
+    "zone.js": "^0.8.17"
   },
   "scripts": {
-    "build": "ngc -p src && npm run closure",
+    "postinstall": "webdriver-manager update",
+    "build": "ngc -p src && yarn run closure && ./size_report.sh",
     "format": "clang-format --glob='{{src,test}/**/,}*.{js,ts}' -i",
     "format:enforce": "clang-format --glob='{{src,test}/**/,}*.{js,ts}' -output-replacements-xml | grep -c offset | grep 0",
     "closure": "java -jar node_modules/google-closure-compiler/compiler.jar --flagfile closure.conf",
@@ -33,7 +29,8 @@
     "serve": "lite-server -c test/browser.config.json",
     "explore": "source-map-explorer dist/bundle.js dist/bundle.js.map",
     "pretest": "tsc -p test",
-    "test": "concurrently \"npm run serve\" protractor --kill-others --success first"
+    "test": "concurrently \"yarn run serve\" protractor --kill-others --success first",
+    "clean:all": "rimraf ./dist"
   },
   "author": "Alex Eagle <alexeagle@google.com> (https://angular.io/)",
   "license": "MIT"

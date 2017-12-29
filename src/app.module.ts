@@ -8,5 +8,4 @@ import {TestComponent} from './test.component';
   bootstrap: [Basic, TestComponent],
   imports: [BrowserModule],
 })
-export class AppModule {
-}
+export class AppModule {}
